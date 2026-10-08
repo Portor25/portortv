@@ -1,0 +1,97 @@
+#EXTM3U url-tvg="https://portor25.github.io/portortv/demo/epg.xml"
+#EXTINF:-1 tvg-id="globalnews24" tvg-chno="101" tvg-logo="https://portor25.github.io/portortv/demo/logos/globalnews24.png" group-title="News",Global News 24
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+#EXTINF:-1 tvg-id="metronews" tvg-chno="102" tvg-logo="https://portor25.github.io/portortv/demo/logos/metronews.png" group-title="News",Metro News
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+#EXTINF:-1 tvg-id="businesstoday" tvg-chno="103" tvg-logo="https://portor25.github.io/portortv/demo/logos/businesstoday.png" group-title="News",Business Today
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+#EXTINF:-1 tvg-id="vistaone" tvg-chno="104" tvg-logo="https://portor25.github.io/portortv/demo/logos/vistaone.png" group-title="Entertainment",Vista One
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+#EXTINF:-1 tvg-id="vistatwo" tvg-chno="105" tvg-logo="https://portor25.github.io/portortv/demo/logos/vistatwo.png" group-title="Entertainment",Vista Two
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+#EXTINF:-1 tvg-id="novadrama" tvg-chno="106" tvg-logo="https://portor25.github.io/portortv/demo/logos/novadrama.png" group-title="Entertainment",Nova Drama
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+#EXTINF:-1 tvg-id="laughlounge" tvg-chno="107" tvg-logo="https://portor25.github.io/portortv/demo/logos/laughlounge.png" group-title="Entertainment",Laugh Lounge
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+#EXTINF:-1 tvg-id="primeliving" tvg-chno="108" tvg-logo="https://portor25.github.io/portortv/demo/logos/primeliving.png" group-title="Entertainment",Prime Living
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+#EXTINF:-1 tvg-id="arenasports1" tvg-chno="109" tvg-logo="https://portor25.github.io/portortv/demo/logos/arenasports1.png" group-title="Sports",Arena Sports 1
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+#EXTINF:-1 tvg-id="arenasports2" tvg-chno="110" tvg-logo="https://portor25.github.io/portortv/demo/logos/arenasports2.png" group-title="Sports",Arena Sports 2
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+#EXTINF:-1 tvg-id="goaltv" tvg-chno="111" tvg-logo="https://portor25.github.io/portortv/demo/logos/goaltv.png" group-title="Sports",Goal TV
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+#EXTINF:-1 tvg-id="racinglive" tvg-chno="112" tvg-logo="https://portor25.github.io/portortv/demo/logos/racinglive.png" group-title="Sports",Racing Live
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+#EXTINF:-1 tvg-id="kidzone" tvg-chno="113" tvg-logo="https://portor25.github.io/portortv/demo/logos/kidzone.png" group-title="Kids",Kidzone
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+#EXTINF:-1 tvg-id="toonplanet" tvg-chno="114" tvg-logo="https://portor25.github.io/portortv/demo/logos/toonplanet.png" group-title="Kids",Toon Planet
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+#EXTINF:-1 tvg-id="cinemamax" tvg-chno="115" tvg-logo="https://portor25.github.io/portortv/demo/logos/cinemamax.png" group-title="Movies",Cinema Max
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+#EXTINF:-1 tvg-id="classicreel" tvg-chno="116" tvg-logo="https://portor25.github.io/portortv/demo/logos/classicreel.png" group-title="Movies",Classic Reel
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+#EXTINF:-1 tvg-id="planetwild" tvg-chno="117" tvg-logo="https://portor25.github.io/portortv/demo/logos/planetwild.png" group-title="Documentary",Planet Wild
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+#EXTINF:-1 tvg-id="discoverscience" tvg-chno="118" tvg-logo="https://portor25.github.io/portortv/demo/logos/discoverscience.png" group-title="Documentary",Discover Science
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+#EXTINF:-1 tvg-id="beattv" tvg-chno="119" tvg-logo="https://portor25.github.io/portortv/demo/logos/beattv.png" group-title="Music",Beat TV
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+#EXTINF:-1 tvg-id="tastekitchen" tvg-chno="120" tvg-logo="https://portor25.github.io/portortv/demo/logos/tastekitchen.png" group-title="Lifestyle",Taste Kitchen
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/m00.jpg" group-title="Action",Iron Horizon
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/movie/m00
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/m01.jpg" group-title="Action",Rogue Signal
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/movie/m01
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/m02.jpg" group-title="Action",Steel Rain
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/movie/m02
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/m03.jpg" group-title="Action",Night Runner
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/movie/m03
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/m04.jpg" group-title="Drama",The Last Summer
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/movie/m04
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/m05.jpg" group-title="Drama",Paper Lanterns
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/movie/m05
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/m06.jpg" group-title="Drama",Quiet Harbour
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/movie/m06
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/m07.jpg" group-title="Drama",Letters Home
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/movie/m07
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/m08.jpg" group-title="Comedy",Totally Fine
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/movie/m08
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/m09.jpg" group-title="Comedy",The Wedding Plan
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/movie/m09
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/m10.jpg" group-title="Comedy",Office Party
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/movie/m10
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/m11.jpg" group-title="Family",Robo Pals: The Movie
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/movie/m11
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/m12.jpg" group-title="Family",The Lost Kite
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/movie/m12
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/m13.jpg" group-title="Sci-Fi",Beyond Orion
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/movie/m13
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/m14.jpg" group-title="Sci-Fi",Echo Station
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/movie/m14
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/m15.jpg" group-title="Sci-Fi",The Ninth Moon
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/movie/m15
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/m16.jpg" group-title="Thriller",Midnight Express Line
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/movie/m16
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/m17.jpg" group-title="Thriller",Cold Trail
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/movie/m17
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/m18.jpg" group-title="Documentary",Ocean Giants
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/movie/m18
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/m19.jpg" group-title="Documentary",Wild Plains
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/movie/m19
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/s00.jpg" group-title="Drama",Harbour Lights
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/series/demo/demo/s00.mp4
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/s01.jpg" group-title="Drama",The Firm
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/series/demo/demo/s01.mp4
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/s02.jpg" group-title="Crime",Northside Detectives
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/series/demo/demo/s02.mp4
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/s03.jpg" group-title="Crime",Cold Case Unit
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/series/demo/demo/s03.mp4
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/s04.jpg" group-title="Comedy",Flatmates
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/series/demo/demo/s04.mp4
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/s05.jpg" group-title="Sci-Fi",Starbound
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/series/demo/demo/s05.mp4
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/s06.jpg" group-title="Family",Space Cadets
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/series/demo/demo/s06.mp4
+#EXTINF:-1 tvg-logo="https://portor25.github.io/portortv/demo/posters/s07.jpg" group-title="Reality",Hidden Homes
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8?v=/series/demo/demo/s07.mp4
