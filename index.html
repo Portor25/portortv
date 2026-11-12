@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0d18">
+  <link rel="icon" href="img/portortv-icon.png">
+  <meta property="og:title" content="PortorTV – IPTV player for your TV">
+  <meta property="og:description" content="Live TV with a real TV guide, catch-up, recording, multiview and a sports hub. Bring your own playlist.">
+  <meta property="og:image" content="https://portordevs.com/portortv/img/share.png">
+  <meta name="description" content="PortorTV is an IPTV player for Android TV, Google TV and Fire TV. Use your own playlist to watch live TV, catch-up, films and more.">
+  <title>PortorTV — Your playlist, made simple</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f7f7ff;
+      --muted: #a9afc4;
+      --dim: #7b8198;
+      --night: #0a0d18;
+      --panel: #111625;
+      --panel-2: #151b2d;
+      --line: rgba(220, 226, 255, .1);
+      --violet: #9b7bff;
+      --violet-2: #6e52df;
+      --mint: #f07cc0;
+      --gold: #ffd477;
+      --radius: 24px;
+      --max: 1180px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--night);
+      color: var(--ink);
+      font: 16px/1.6 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: -.01em;
+    }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, summary:focus-visible { outline: 3px solid var(--mint); outline-offset: 4px; }
+    img, svg { display: block; }
+    .wrap { width: min(var(--max), calc(100% - 48px)); margin-inline: auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(10, 13, 24, .78);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      backdrop-filter: blur(18px);
+    }
+    .nav { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 28px; width: 100%; padding: 0 clamp(16px, 3vw, 40px); }
+    .brand-logo { width: 40px; height: 40px; border-radius: 50%; box-shadow: 0 0 18px rgba(155,123,255,.45); }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 760; letter-spacing: -.04em; }
+    .brand-icon {
+      width: 36px; height: 36px; display: grid; place-items: center; border-radius: 12px;
+      color: #101220; background: linear-gradient(145deg, var(--mint), #bca6ff 72%);
+      box-shadow: 0 8px 28px rgba(122, 112, 255, .25);
+    }
+    .brand-icon svg { width: 21px; height: 21px; }
+    .nav-links { display: flex; align-items: center; gap: 30px; color: var(--muted); font-size: 14px; font-weight: 650; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links .nav-cta { color: #fff; background: linear-gradient(135deg, #8b5cf6, #ec4899); padding: 10px 17px; border-radius: 999px; }
+    .nav-links .nav-cta:hover { color: #fff; filter: brightness(1.08); }
+
+    .hero {
+      position: relative; overflow: hidden; isolation: isolate;
+      padding: 86px 0 90px;
+      background:
+        radial-gradient(ellipse at 74% 23%, rgba(113, 85, 227, .3), transparent 33%),
+        radial-gradient(ellipse at 12% 74%, rgba(240, 96, 158, .12), transparent 35%),
+        linear-gradient(125deg, #11152a 0%, #101325 52%, #15132b 100%);
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: 0; z-index: -1; opacity: .22;
+      background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size: 52px 52px; mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(500px, 1.1fr); align-items: center; gap: 70px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--mint); font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 23px; height: 1px; background: currentColor; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin: 17px 0 19px; font-size: clamp(54px, 7.2vw, 88px); line-height: .98; letter-spacing: -.075em; font-weight: 820; }
+    h1 span { color: var(--mint); }
+    .hero-copy { max-width: 510px; color: #c5c9d9; font-size: 18px; line-height: 1.7; }
+    .hero-app { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+    .hero-app img { width: 64px; height: 64px; border-radius: 18px; box-shadow: 0 10px 30px rgba(0,0,0,.4); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .button { min-height: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 0 20px; border: 1px solid transparent; border-radius: 14px; font-size: 14px; font-weight: 780; transition: transform .18s ease, background .18s ease, border-color .18s ease; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { background: linear-gradient(135deg, #8b5cf6, #ec4899); color: #fff; box-shadow: 0 10px 32px rgba(236,72,153,.25); }
+    .button-primary:hover { filter: brightness(1.08); }
+    .button-quiet { color: var(--ink); background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.16); }
+    .button-quiet:hover { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.28); }
+    .hero-meta { display: flex; align-items: center; gap: 13px; margin-top: 23px; color: var(--dim); font-size: 12px; }
+    .hero-meta span { display: inline-flex; align-items: center; gap: 7px; }
+    .hero-meta i { width: 4px; height: 4px; border-radius: 50%; background: #555d75; }
+
+    .tv-stage { position: relative; min-height: 432px; display: grid; place-items: center; }
+    .stage-glow { position: absolute; width: 76%; height: 72%; border-radius: 50%; background: rgba(112, 83, 241, .27); filter: blur(70px); }
+    .tv-frame { position: relative; width: 100%; padding: 11px; border: 1px solid rgba(255,255,255,.24); border-radius: 22px; background: linear-gradient(150deg, #333750, #121622 35%, #090d15); box-shadow: 0 35px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(161,143,255,.12); transform: perspective(1200px) rotateY(-5deg) rotateX(1deg); }
+    .tv-screen { min-height: 362px; overflow: hidden; border-radius: 13px; background: #101521; }
+    .tv-real { min-height: 0; }
+    .tv-real img { width: 100%; height: auto; }
+    .screen-top { height: 145px; padding: 20px 23px; display: grid; grid-template-columns: 1fr 41%; gap: 20px; background: linear-gradient(115deg, #1e2435, #181d2c); }
+    .screen-kicker { color: var(--mint); font-size: 9px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    .screen-title { margin: 11px 0 5px; font-size: 24px; font-weight: 760; letter-spacing: -.04em; }
+    .screen-sub { color: #9da5bb; font-size: 10px; }
+    .preview { position: relative; overflow: hidden; border-radius: 9px; background: linear-gradient(165deg, rgba(240,124,192,.12), transparent 55%), linear-gradient(20deg, #495a77 0%, #a7b5c3 48%, #7ec0d7 49%, #d8e6ec 100%); }
+    .preview::before { content: ""; position: absolute; left: 16%; right: 11%; bottom: -23px; height: 76px; border-radius: 50% 50% 0 0; background: linear-gradient(90deg, #40515b, #73856c 46%, #42585b); }
+    .preview::after { content: "LIVE"; position: absolute; top: 10px; left: 10px; padding: 3px 7px; border-radius: 5px; color: #fff; background: var(--mint); font-size: 8px; font-weight: 900; letter-spacing: .06em; }
+    .guide-head { display: flex; justify-content: space-between; padding: 12px 15px 8px; color: #858ea5; font-size: 9px; border-bottom: 1px solid rgba(255,255,255,.07); }
+    .guide-row { display: grid; grid-template-columns: 42px 1.1fr 1fr 1fr; gap: 6px; align-items: center; padding: 10px 13px; color: #c5cad8; font-size: 9px; border-bottom: 1px solid rgba(255,255,255,.045); }
+    .guide-row:nth-child(odd) { background: rgba(255,255,255,.025); }
+    .guide-row.active { color: #fff; background: rgba(150,121,255,.2); }
+    .channel { color: var(--mint); font-weight: 800; }
+    .program { overflow: hidden; padding: 6px 8px; white-space: nowrap; text-overflow: ellipsis; border-radius: 5px; background: rgba(255,255,255,.055); }
+    .program.active { background: var(--violet-2); }
+    .tv-stand { width: 48%; height: 16px; margin: 0 auto; border-bottom: 12px solid #252b3c; border-left: 20px solid transparent; border-right: 20px solid transparent; }
+    .tv-foot { width: 66%; height: 4px; margin: auto; border-radius: 50%; background: #363b50; filter: blur(1px); }
+    .float-chip { position: absolute; right: -17px; bottom: 38px; display: flex; align-items: center; gap: 10px; padding: 11px 15px; border: 1px solid rgba(255,255,255,.12); border-radius: 13px; color: #e7eaff; background: rgba(20,25,42,.9); box-shadow: 0 14px 32px rgba(0,0,0,.3); font-size: 11px; font-weight: 700; }
+    .float-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 13px var(--mint); }
+
+    .notice { border-block: 1px solid var(--line); background: #0d1120; }
+    .notice-inner { display: flex; align-items: flex-start; gap: 15px; padding: 21px 0; color: var(--muted); font-size: 14px; }
+    .notice-mark { flex: 0 0 28px; width: 28px; height: 28px; display: grid; place-items: center; border: 1px solid rgba(255,212,119,.25); border-radius: 9px; color: var(--gold); font-weight: 800; }
+    .notice strong { color: var(--ink); }
+
+    .section { padding: 92px 0; }
+    .section-head { max-width: 700px; margin: 0 auto 42px; text-align: center; }
+    .section-head .eyebrow { justify-content: center; }
+    .section h2 { margin: 12px 0 12px; font-size: clamp(34px, 4vw, 52px); line-height: 1.08; letter-spacing: -.06em; }
+    .section-head p { margin: 0; color: var(--muted); font-size: 16px; }
+    .features { background: linear-gradient(180deg, #0a0d18, #0e1220 100%); }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .feature-card { min-height: 228px; padding: 25px; border: 1px solid var(--line); border-radius: 20px; background: linear-gradient(145deg, rgba(24,30,49,.88), rgba(15,20,34,.88)); transition: transform .2s ease, border-color .2s ease, background .2s ease; }
+    .feature-card:hover { transform: translateY(-4px); border-color: rgba(240,124,192,.33); background: linear-gradient(145deg, rgba(29,38,59,.95), rgba(15,20,34,.95)); }
+    .feature-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 15px; }
+    .feature-icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 14px; color: var(--mint); background: rgba(240,124,192,.09); }
+    .feature-icon svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .premium { padding: 5px 8px; border: 1px solid rgba(155,123,255,.24); border-radius: 999px; color: #c6b4ff; background: rgba(155,123,255,.09); font-size: 10px; font-weight: 850; letter-spacing: .09em; text-transform: uppercase; }
+    .feature-card h3 { margin: 20px 0 9px; font-size: 19px; line-height: 1.2; letter-spacing: -.035em; }
+    .feature-card ul { margin: 0; padding: 0; list-style: none; color: var(--muted); font-size: 13px; line-height: 1.6; }
+    .feature-card li { position: relative; margin-top: 6px; padding-left: 13px; }
+    .feature-card li::before { content: ""; position: absolute; left: 0; top: .62em; width: 5px; height: 5px; border-radius: 50%; background: var(--violet); }
+
+    .screens-section { overflow: hidden; background: #0d1120; }
+    .screens-grid { display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 16px; align-items: end; }
+    .shot-card { overflow: hidden; border: 1px solid rgba(255,255,255,.12); border-radius: 18px; background: #151b2b; box-shadow: 0 22px 48px rgba(0,0,0,.22); }
+    .shot-card:nth-child(2) { transform: translateY(-18px); }
+    .shot-ui { min-height: 210px; padding: 15px; background: linear-gradient(140deg, #1e2638, #111725); }
+    .shot-label { display: flex; align-items: center; justify-content: space-between; margin-bottom: 13px; color: #eef1fc; font-size: 11px; font-weight: 750; }
+    .shot-label span { color: var(--mint); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+    .mini-grid { display: grid; grid-template-columns: 86px repeat(3, 1fr); gap: 5px; }
+    .mini-grid i { height: 24px; border-radius: 4px; background: rgba(255,255,255,.07); }
+    .mini-grid i:nth-child(4n + 2), .mini-grid i:nth-child(4n + 3) { background: rgba(155,123,255,.29); }
+    .mini-grid i:first-child, .mini-grid i:nth-child(4n + 1) { background: rgba(240,124,192,.17); }
+    .score-list { display: grid; gap: 8px; }
+    .score-row { display: flex; align-items: center; justify-content: space-between; padding: 9px; border: 1px solid rgba(255,255,255,.06); border-radius: 9px; background: rgba(255,255,255,.035); color: #b8bfd2; font-size: 9px; }
+    .score-row b { color: var(--ink); }
+    .poster-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; }
+    .poster { aspect-ratio: .72; display: flex; align-items: end; padding: 7px; border-radius: 7px; color: rgba(255,255,255,.9); font-size: 8px; font-weight: 800; background: linear-gradient(155deg, #54448d, #26243f 54%, #111725); }
+    .poster:nth-child(2) { background: linear-gradient(155deg, #537574, #263c4b 55%, #111725); }
+    .poster:nth-child(3) { background: linear-gradient(155deg, #9c664d, #473347 55%, #111725); }
+    .shot-caption { padding: 14px 16px 16px; border-top: 1px solid rgba(255,255,255,.07); color: #cdd2e2; font-size: 13px; font-weight: 700; }
+    .demo-note { margin: 26px 0 0; text-align: center; color: var(--dim); font-size: 12px; }
+    .gallery { display: grid; grid-auto-flow: column; grid-auto-columns: min(80%, 680px); gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 14px; }
+    .real-shot { margin: 0; scroll-snap-align: start; overflow: hidden; border: 1px solid rgba(255,255,255,.12); border-radius: 18px; background: #151b2b; box-shadow: 0 22px 48px rgba(0,0,0,.22); }
+    .real-shot img { width: 100%; height: auto; }
+    .real-shot figcaption { padding: 14px 16px 16px; border-top: 1px solid rgba(255,255,255,.07); color: #cdd2e2; font-size: 13px; font-weight: 700; }
+
+    .plans { background: radial-gradient(ellipse at 50% 0, rgba(112,83,241,.14), transparent 50%), #0a0d18; }
+    .plan-note { max-width: 720px; margin: -18px auto 30px; text-align: center; color: var(--muted); font-size: 14px; }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 20px; background: rgba(17,22,37,.82); box-shadow: 0 25px 70px rgba(0,0,0,.2); }
+    table { width: 100%; min-width: 620px; border-collapse: collapse; }
+    th, td { padding: 14px 19px; border-bottom: 1px solid rgba(255,255,255,.07); text-align: left; }
+    thead th { color: #d8def2; font-size: 13px; font-weight: 800; }
+    thead th:first-child { width: 64%; color: var(--muted); }
+    thead th:last-child { color: var(--mint); background: rgba(240,124,192,.035); }
+    tbody td { color: var(--muted); font-size: 13px; }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody td:first-child { color: #e5e8f4; }
+    tbody td:nth-child(2), tbody td:nth-child(3) { width: 18%; text-align: center; font-size: 18px; font-weight: 800; }
+    tbody td:last-child { color: var(--mint); background: rgba(240,124,192,.025); }
+    .yes { color: var(--mint); }
+    .no { color: #596078; font-weight: 500; }
+
+    .download { background: linear-gradient(135deg, #1b1236, #101528 55%, #1f1029); }
+    .download-grid { display: grid; grid-template-columns: .88fr 1.12fr; gap: 18px; }
+    .download-card { padding: 30px; border: 1px solid var(--line); border-radius: 22px; background: rgba(13,17,31,.74); }
+    .download-card.primary { border-color: rgba(155,123,255,.45); background: linear-gradient(145deg, rgba(88,52,170,.42), rgba(13,17,31,.83)); }
+    .download-card h3 { margin: 0 0 10px; font-size: 21px; letter-spacing: -.04em; }
+    .download-card p { margin: 0 0 18px; color: var(--muted); font-size: 14px; }
+    .steps { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; color: #c0c6d8; font-size: 13px; }
+    .steps li { display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start; }
+    .step-num { width: 25px; height: 25px; display: grid; place-items: center; border: 1px solid rgba(155,123,255,.26); border-radius: 8px; color: #cdbfff; background: rgba(155,123,255,.08); font-size: 11px; font-weight: 800; }
+    .code-link { display: inline-block; margin: 5px 0 13px; padding: 9px 12px; border: 1px solid rgba(255,255,255,.1); border-radius: 9px; color: var(--mint); background: rgba(0,0,0,.22); font: 12px/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .small-note { color: var(--dim) !important; font-size: 12px !important; }
+
+    .faq { background: #0a0d18; }
+    .faq-list { max-width: 820px; margin: auto; border-top: 1px solid var(--line); }
+    details { border-bottom: 1px solid var(--line); }
+    summary { position: relative; padding: 20px 38px 20px 0; color: #edf0fb; font-size: 16px; font-weight: 730; cursor: pointer; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; position: absolute; right: 4px; top: 16px; color: var(--mint); font-size: 23px; font-weight: 400; }
+    details[open] summary::after { content: "−"; }
+    details p { max-width: 720px; margin: -4px 0 20px; color: var(--muted); font-size: 14px; }
+    details p a { color: var(--mint); text-decoration: underline; text-underline-offset: 3px; }
+    .footer { padding: 30px 0; border-top: 1px solid var(--line); background: #080b14; }
+    .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--dim); font-size: 12px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
+    .footer-links a:hover { color: var(--ink); }
+    .credit { margin-top: 16px; margin-bottom: 0; color: var(--dim); font-size: 11px; }
+
+
+    .showcase { display: grid; grid-template-columns: .85fr 1.15fr; gap: 48px; align-items: center; }
+    .showcase-copy h2 { text-align: left; }
+    .showcase-copy p { color: var(--muted); }
+    .tick-list { margin: 18px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; color: #d9dcec; font-size: 15px; }
+    .tick-list li { position: relative; padding-left: 28px; }
+    .tick-list li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--mint); font-weight: 900; }
+    .stack { display: grid; gap: 16px; }
+    .stack img, .settings-grid img { width: 100%; height: auto; border-radius: 16px; border: 1px solid rgba(255,255,255,.12); box-shadow: 0 22px 48px rgba(0,0,0,.28); }
+    .stack img:nth-child(2) { width: 82%; margin-left: auto; margin-top: -60px; position: relative; }
+    .settings-section { background: #0d1120; }
+    .settings-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .settings-grid figure { margin: 0; }
+    .settings-grid figcaption { margin-top: 10px; color: #cdd2e2; font-size: 14px; font-weight: 700; }
+    .settings-grid figcaption span { display: block; color: var(--muted); font-weight: 500; font-size: 13px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 34px auto 0; max-width: 900px; }
+    .chips span { padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; background: rgba(155,123,255,.08); color: #d6ccff; font-size: 13px; font-weight: 650; }
+    @media (max-width: 900px) {
+      .showcase { grid-template-columns: 1fr; gap: 30px; }
+      .settings-grid { grid-template-columns: 1fr; }
+      .stack img:nth-child(2) { width: 100%; margin-top: 0; }
+    }
+    @media (max-width: 900px) {
+      .hero { padding-top: 68px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 42px; }
+      .hero-copy { max-width: 680px; }
+      .tv-stage { width: min(700px, 100%); min-height: auto; margin: 0 auto; }
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .screens-grid { grid-template-columns: 1fr 1fr; }
+      .shot-card:first-child { grid-column: 1 / -1; }
+      .shot-card:nth-child(2) { transform: none; }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 32px, var(--max)); }
+      .nav { height: 64px; }
+      .brand { font-size: 14px; }
+      .nav-links { gap: 14px; font-size: 12px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .nav-links .nav-cta { padding: 9px 13px; }
+      .hero { padding: 54px 0 62px; }
+      .hero-grid { gap: 36px; }
+      h1 { font-size: clamp(52px, 15vw, 76px); }
+      .hero-copy { font-size: 16px; }
+      .hero-actions { display: grid; grid-template-columns: 1fr; }
+      .button { width: 100%; }
+      .hero-meta { flex-wrap: wrap; gap: 9px; }
+      .tv-stage { padding: 0 2px 17px; }
+      .tv-frame { padding: 7px; border-radius: 16px; transform: none; }
+      .tv-screen { min-height: 270px; }
+      .tv-real { min-height: 0; }
+      .screen-top { height: 112px; padding: 13px; gap: 10px; }
+      .screen-title { margin-top: 7px; font-size: 17px; }
+      .screen-sub { font-size: 8px; }
+      .guide-head { padding: 9px 8px 5px; font-size: 7px; }
+      .guide-row { grid-template-columns: 31px 1fr 1fr; padding: 8px 7px; font-size: 7px; }
+      .guide-row .program:last-child { display: none; }
+      .float-chip { right: 0; bottom: 0; padding: 9px 11px; font-size: 9px; }
+      .notice-inner { font-size: 12px; }
+      .section { padding: 68px 0; }
+      .section-head { margin-bottom: 30px; }
+      .section-head p { font-size: 14px; }
+      .feature-grid { grid-template-columns: 1fr; gap: 11px; }
+      .feature-card { min-height: 0; padding: 21px; }
+      .feature-card h3 { margin-top: 15px; }
+      .screens-grid { grid-template-columns: 1fr; gap: 12px; }
+      .shot-card:first-child { grid-column: auto; }
+      .shot-ui { min-height: 190px; }
+      .download-grid { grid-template-columns: 1fr; }
+      .download-card { padding: 24px; }
+      .footer-row { align-items: flex-start; flex-direction: column; }
+      .footer-links { gap: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="nav">
+      <a class="brand" href="https://portordevs.com/" aria-label="PortorDevs home">
+        <img class="brand-logo" src="img/portordevs-logo-small.png" alt="" width="40" height="40">
+        <span>PortorDevs</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#features">Features</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="#movies">Movies &amp; series</a>
+        <a href="#settings">Settings</a>
+        <a href="#download">Download</a>
+        <a href="#faq">Help</a>
+        <a class="nav-cta" href="#download">Get PortorTV</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="hero-app"><img src="img/portortv-icon.png" alt="PortorTV app icon" width="64" height="64"><div class="eyebrow">Android TV · Google TV · Fire TV</div></div>
+          <h1>Meet<br><span>PortorTV.</span></h1>
+          <p class="hero-copy">A fast, easy IPTV player made for the TV remote. A real TV guide, catch-up, recording, multiview, movies and series, and a live sports hub — all from your own playlist.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://play.google.com/store/apps/details?id=com.portortv.app">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.2 2.9c-.5.3-.8.8-.8 1.5v15.2c0 .7.3 1.2.8 1.5l8.2-9.1L4.2 2.9Zm9.2 10.1-7.5 8.4 11-6.4-3.5-2Zm5-3.9L6 2.1l7.4 8.3 5-1.3Zm-1.5 2.9 3-1.7c.7-.4.7-1.2 0-1.6l-2.8-1.6-4.7 2.5 4.5 2.4Z"/></svg>
+              Get it on Google Play
+            </a>
+            <a class="button button-quiet" href="#download">Fire TV &amp; other devices <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="hero-meta"><span>Built for the TV remote</span><i></i><span>Your playlist, your choice</span></div>
+        </div>
+        <div class="tv-stage" aria-label="Illustration of PortorTV's live TV guide">
+          <div class="stage-glow"></div>
+          <div class="tv-frame">
+            <div class="tv-screen tv-real"><img src="img/guide.webp" alt="PortorTV's TV guide with a live preview" width="1280" height="720"></div>
+          </div>
+          <div class="tv-stand"></div><div class="tv-foot"></div>
+          <div class="float-chip"><span class="float-dot"></span> The guide at a glance</div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="notice">
+      <div class="wrap notice-inner"><span class="notice-mark" aria-hidden="true">i</span><span><strong>PortorTV is a player only.</strong> It doesn’t include any channels, playlists or content. You need a playlist from your own TV provider (M3U link, Xtream Codes login or Stalker portal).</span></div>
+    </aside>
+
+    <section class="section features" id="features">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">Made for the big screen</div><h2>Everything you need.<br>Easy to find.</h2><p>Built for Android TV, Google TV and Fire TV boxes and the TV remote. It works on Android phones and tablets too.</p></div>
+        <div class="feature-grid">
+          <article class="feature-card"><div class="feature-top"><span class="feature-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 22h8m-4-4v4M9 8l6 3-6 3z"/></svg></span></div><h3>Live TV with a real TV guide</h3><ul><li>Classic grid guide with live preview</li><li>Categories, logos, channel numbers and now/next details</li><li>Catch-up and play from start, when your provider supports it</li><li>Extra XMLTV links, automatic matching and time shift</li></ul></article>
+          <article class="feature-card"><div class="feature-top"><span class="feature-icon"><svg viewBox="0 0 24 24"><path d="M3 7h18M5 7l2 13h10l2-13M9 7l3-4 3 4M9 12h6m-6 4h6"/></svg></span><span class="premium">Premium</span></div><h3>Sports hub</h3><ul><li>Today’s games and the next few days: football, motorsport, ice hockey, American football, basketball and more</li><li>Opens on the games found on your own channels</li><li>Compact list with live scores and match time, or turn scores off to avoid spoilers</li><li>Press OK to watch; find and follow any team, and set reminders</li></ul></article>
+          <article class="feature-card"><div class="feature-top"><span class="feature-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h16M18 10l3 2-3 2"/></svg></span></div><h3>Smooth player</h3><ul><li>Fast channel switching and recent channels</li><li>Choose audio, subtitles, quality and aspect ratio</li><li>Picture-in-picture, sleep timer and playback speed</li><li>Multiple decoders, surround sound and auto frame rate</li></ul></article>
+          <article class="feature-card"><div class="feature-top"><span class="feature-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg></span><span class="premium">Premium</span></div><h3>Multiview</h3><ul><li>Watch two or four live channels at once</li><li>Change the channel on any screen</li><li>Uses what your box can handle, so it stays smooth</li></ul></article>
+          <article class="feature-card"><div class="feature-top"><span class="feature-icon"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 3v5l4-2 4 2V3M8 13h8M8 17h5"/></svg></span><span class="premium">Premium</span></div><h3>Movies &amp; series</h3><ul><li>Posters, plots, ratings, seasons and episodes</li><li>Watch history, resume and automatic next episode</li><li>Jump back to your place in the list</li><li>Voice search</li></ul></article>
+          <article class="feature-card"><div class="feature-top"><span class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v5l3 2M4 4l2 2m12-2-2 2"/></svg></span><span class="premium">Premium</span></div><h3>Record your shows</h3><ul><li>Record now or schedule from the TV guide</li><li>Save to device, USB or a PC, Mac or NAS on your home network</li><li>Get reminders before a programme starts</li></ul></article>
+          <article class="feature-card"><div class="feature-top"><span class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.7 2.9-.2-.1a1.7 1.7 0 0 0-1.8.6l-.1.2h-3.4l-.1-.2a1.7 1.7 0 0 0-1.8-.6l-.2.1-1.7-2.9.1-.1a1.7 1.7 0 0 0 .3-1.9l-.1-.2-3.2-1.7v-3.4l.2-.1a1.7 1.7 0 0 0 .6-1.8l-.1-.2 2.9-1.7.1.1a1.7 1.7 0 0 0 1.9.3l.2-.1h3.4l.1.2a1.7 1.7 0 0 0 1.8.6l.2-.1 1.7 2.9-.1.1a1.7 1.7 0 0 0-.3 1.9l.1.2 3.2 1.7v3.4l-.2.1a1.7 1.7 0 0 0-.6 1.8z"/></svg></span></div><h3>Make it yours</h3><ul><li>Light, dark and AMOLED themes with accent colours</li><li>Favourites, categories and channel controls</li><li>Parental control PIN, guide text size and see-through panels</li><li>Back up and restore your set-up</li></ul></article>
+          <article class="feature-card"><div class="feature-top"><span class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5M8 10h5m-2.5-2.5v5"/></svg></span></div><h3>Easy to use</h3><ul><li>Designed for the remote, with a quick welcome tour</li><li>Step-by-step Help &amp; guide inside the app</li><li>Search channels, TV, films and series by typing or voice</li></ul></article>
+          <article class="feature-card"><div class="feature-top"><span class="feature-icon"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 10h16M4 15h11M4 20h8"/><circle cx="18" cy="16" r="3"/><path d="m20 18 2 2"/></svg></span></div><h3>Your playlists</h3><ul><li>M3U / M3U8, Xtream Codes and Stalker portals</li><li>Use several playlists at once with Premium</li><li>Set an update schedule and pick up where you left off</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section screens-section" id="screenshots">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">A look inside</div><h2>See it on your TV.</h2><p>A clean layout that feels at home on a television, with the details you need one click away.</p></div>
+        <div class="gallery">
+          <figure class="real-shot"><img src="img/guide.webp" alt="TV guide with live preview" loading="lazy" width="1280" height="720"><figcaption>TV guide with live preview</figcaption></figure>
+          <figure class="real-shot"><img src="img/sports.webp" alt="Sports hub: what's on and which channel" loading="lazy" width="1280" height="720"><figcaption>Sports hub: what's on and which channel</figcaption></figure>
+          <figure class="real-shot"><img src="img/recent.webp" alt="Recent channels while you watch" loading="lazy" width="1280" height="720"><figcaption>Recent channels while you watch</figcaption></figure>
+          <figure class="real-shot"><img src="img/categories.webp" alt="Categories change the guide as you scroll" loading="lazy" width="1280" height="720"><figcaption>Categories change the guide as you scroll</figcaption></figure>
+          <figure class="real-shot"><img src="img/player.webp" alt="Info bar with now and next" loading="lazy" width="1280" height="720"><figcaption>Info bar with now and next</figcaption></figure>
+          <figure class="real-shot"><img src="img/movies-categories.webp" alt="Movies with categories" loading="lazy" width="1280" height="720"><figcaption>Movies with categories, search and watch history</figcaption></figure>
+          <figure class="real-shot"><img src="img/search.webp" alt="Search channels, programmes and films together" loading="lazy" width="1280" height="720"><figcaption>Search channels, programmes and films together</figcaption></figure>
+        </div>
+        <p class="demo-note">Screenshots use demo channels. Scroll sideways to see more.</p>
+      </div>
+    </section>
+
+    <section class="section" id="movies">
+      <div class="wrap showcase">
+        <div class="showcase-copy">
+          <div class="eyebrow">Movies &amp; series <span class="premium" style="margin-left:6px">Premium</span></div>
+          <h2>Your films and box sets, the easy way.</h2>
+          <p>PortorTV turns your provider's films and series into a proper library you can browse from the sofa.</p>
+          <ul class="tick-list">
+            <li>Posters, plots, ratings, seasons and episodes</li>
+            <li>Categories, search and voice search</li>
+            <li>Watch history: carry on where you stopped</li>
+            <li>Next episode starts by itself</li>
+            <li>Back to your place in the list after watching</li>
+            <li>Add films and series to your favourites</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <img src="img/movies.webp" alt="PortorTV's movies page with posters" loading="lazy" width="1280" height="720">
+          <img src="img/series.webp" alt="PortorTV's series page with covers" loading="lazy" width="1280" height="720">
+        </div>
+      </div>
+    </section>
+
+    <section class="section settings-section" id="settings">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">Set it up your way</div><h2>Settings for everything.</h2><p>Every part of PortorTV can be tuned from the remote, from how the guide looks to how the picture and sound are played.</p></div>
+        <div class="settings-grid">
+          <figure><img src="img/settings-player.webp" alt="Player settings" loading="lazy" width="1280" height="720"><figcaption>Player<span>Aspect ratio, buffer size, hardware or software decoders, auto frame rate, surround sound and more</span></figcaption></figure>
+          <figure><img src="img/settings-guide.webp" alt="TV guide settings" loading="lazy" width="1280" height="720"><figcaption>TV guide<span>How many days to keep, programme descriptions and when the guide updates</span></figcaption></figure>
+          <figure><img src="img/settings-appearance.webp" alt="Appearance settings" loading="lazy" width="1280" height="720"><figcaption>Appearance<span>Light, dark or AMOLED black, with your choice of accent colour</span></figcaption></figure>
+          <figure><img src="img/settings-sports.webp" alt="Sports hub settings" loading="lazy" width="1280" height="720"><figcaption>Sports hub<span>Your sports and teams, list or card layout, and scores on or off</span></figcaption></figure>
+        </div>
+        <div class="chips">
+          <span>Parental PIN</span><span>Backup &amp; restore</span><span>Coloured remote buttons</span><span>Start-up screen</span><span>Low power mode</span><span>12 or 24-hour clock</span><span>Guide text size</span><span>See-through panels</span><span>Subtitle size</span><span>Recent channels size</span><span>Record to PC or NAS</span><span>User agent per playlist</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section plans">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">Choose what suits you</div><h2>Free or Premium.</h2></div>
+        <p class="plan-note">PortorTV is free to use. Premium is a yearly subscription with a free trial, or a one-off lifetime purchase.</p>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Feature</th><th>Free</th><th>Premium</th></tr></thead>
+          <tbody>
+            <tr><td>One playlist with the full TV guide</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><td>Player, recent channels, search and themes</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><td>Sports hub</td><td class="no">–</td><td class="yes">✓</td></tr>
+            <tr><td>Multiview</td><td class="no">–</td><td class="yes">✓</td></tr>
+            <tr><td>Multiple playlists</td><td class="no">–</td><td class="yes">✓</td></tr>
+            <tr><td>Movies &amp; series</td><td class="no">–</td><td class="yes">✓</td></tr>
+            <tr><td>Favourites and catch-up</td><td class="no">–</td><td class="yes">✓</td></tr>
+            <tr><td>Recording and reminders</td><td class="no">–</td><td class="yes">✓</td></tr>
+            <tr><td>Multi-EPG, category and channel management, parental control</td><td class="no">–</td><td class="yes">✓</td></tr>
+            <tr><td>Update schedule, resume, auto frame rate and AI upscaling</td><td class="no">–</td><td class="yes">✓</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <section class="section download" id="download">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">Get started</div><h2>Download PortorTV.</h2><p>Pick your device. If it has the Google Play Store, use that: you get automatic updates and Premium.</p></div>
+        <div class="download-grid">
+          <article class="download-card primary"><h3>Android TV, Google TV, phones &amp; tablets</h3><p>Search for <strong>PortorTV</strong> in the Play Store, or use the button below.</p><a class="button button-primary" href="https://play.google.com/store/apps/details?id=com.portortv.app">Get it on Google Play <span aria-hidden="true">↗</span></a></article>
+          <article class="download-card"><h3>Amazon Fire TV</h3><ol class="steps"><li><span class="step-num">1</span><span>Install Downloader from the Amazon Appstore.</span></li><li><span class="step-num">2</span><span>Allow Downloader in Settings › My Fire TV › Developer options › Install unknown apps. If Developer options are hidden, highlight your device name under About and press OK seven times.</span></li><li><span class="step-num">3</span><span>Open Downloader and type this address:</span></li></ol><div class="code-link">portordevs.com/portortv/apk</div><p class="small-note">Downloader code: coming soon.</p><p class="small-note">Newer Fire TV devices running Vega OS (such as Fire TV Stick 4K Select) can’t install Android apps.</p></article>
+          <article class="download-card"><h3>Other Android boxes</h3><p>For Android devices without the Play Store. Android 7.0 or newer is required.</p><a class="button button-quiet" href="apk/">Download the APK <span aria-hidden="true">↓</span></a><p class="small-note" style="margin-top:16px">The download version has all the free features. Premium for devices without Google Play is coming soon.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">Good to know</div><h2>Questions.</h2></div>
+        <div class="faq-list">
+          <details><summary>Does PortorTV come with channels?</summary><p>No. PortorTV is a player only. Add a playlist from your own TV provider: an M3U link, an Xtream Codes login or a Stalker portal.</p></details>
+          <details><summary>Is it free?</summary><p>Yes, the free version plays one playlist with the full TV guide. Premium adds the sports hub, multiview, more playlists, movies and series, recording and more.</p></details>
+          <details><summary>Which devices does it work on?</summary><p>Android TV and Google TV boxes and TVs, Fire TV devices running Fire OS, and Android phones and tablets (Android 7.0 or newer).</p></details>
+          <details><summary>Where can I get help or suggest a feature?</summary><p>In the app go to Settings › Help &amp; guide, join us on <a href="https://reddit.com/r/PortorTV/">r/PortorTV</a>, or email <a href="mailto:PortorDevs@gmail.com">PortorDevs@gmail.com</a>.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-row"><span>© 2026 PortorDevs</span><nav class="footer-links" aria-label="Footer navigation"><a href="privacy-policy.html">Privacy policy</a><a href="terms-of-use.html">Terms of use</a><a href="https://reddit.com/r/PortorTV/">r/PortorTV</a><a href="https://www.tiktok.com/@portordev">TikTok</a><a href="mailto:PortorDevs@gmail.com">PortorDevs@gmail.com</a></nav></div>
+    <p class="wrap credit">The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.</p>
+  </footer>
+</body>
+</html>
