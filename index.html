@@ -185,6 +185,8 @@
     .download { background: linear-gradient(135deg, #1b1236, #101528 55%, #1f1029); }
     .download-grid { display: grid; grid-template-columns: .88fr 1.12fr; gap: 18px; }
     .download-card { padding: 30px; border: 1px solid var(--line); border-radius: 22px; background: rgba(13,17,31,.74); }
+    .steps3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    @media (max-width: 900px) { .steps3 { grid-template-columns: 1fr; } }
     .download-card.primary { border-color: rgba(155,123,255,.45); background: linear-gradient(145deg, rgba(88,52,170,.42), rgba(13,17,31,.83)); }
     .download-card h3 { margin: 0 0 10px; font-size: 21px; letter-spacing: -.04em; }
     .download-card p { margin: 0 0 18px; color: var(--muted); font-size: 14px; }
@@ -434,9 +436,22 @@
         <div class="section-head"><div class="eyebrow">Get started</div><h2>Download PortorTV.</h2><p>Pick your device. If it has the Google Play Store, use that: you get automatic updates and Premium.</p></div>
         <div class="download-grid">
           <article class="download-card primary"><h3>Android TV, Google TV, phones &amp; tablets</h3><p>Search for <strong>PortorTV</strong> in the Play Store, or use the button below.</p><a class="button button-primary" href="https://play.google.com/store/apps/details?id=com.portortv.app">Get it on Google Play <span aria-hidden="true">↗</span></a></article>
-          <article class="download-card"><h3>Amazon Fire TV</h3><ol class="steps"><li><span class="step-num">1</span><span>Install Downloader from the Amazon Appstore.</span></li><li><span class="step-num">2</span><span>Allow Downloader in Settings › My Fire TV › Developer options › Install unknown apps. If Developer options are hidden, highlight your device name under About and press OK seven times.</span></li><li><span class="step-num">3</span><span>Open Downloader and type this address:</span></li></ol><div class="code-link">portordevs.com/portortv/apk</div><p class="small-note">Downloader code: coming soon.</p><p class="small-note">Newer Fire TV devices running Vega OS (such as Fire TV Stick 4K Select) can’t install Android apps.</p></article>
-          <article class="download-card"><h3>Other Android boxes</h3><p>For Android devices without the Play Store. Android 7.0 or newer is required.</p><a class="button button-quiet" href="apk/">Download the APK <span aria-hidden="true">↓</span></a><p class="small-note" style="margin-top:16px">The download version has all the free features. Premium for devices without Google Play is coming soon.</p></article>
+          <article class="download-card"><h3>Amazon Fire TV</h3><ol class="steps"><li><span class="step-num">1</span><span>Install Downloader from the Amazon Appstore.</span></li><li><span class="step-num">2</span><span>Allow Downloader in Settings › My Fire TV › Developer options › Install unknown apps. If Developer options are hidden, highlight your device name under About and press OK seven times.</span></li><li><span class="step-num">3</span><span>Open Downloader, type this code and press Go:</span></li></ol><div class="code-link">6948510</div><p class="small-note">Or type the address <strong>portordevs.com/portortv/apk</strong> instead.</p><p class="small-note">Newer Fire TV devices running Vega OS (such as Fire TV Stick 4K Select) can’t install Android apps.</p></article>
+          <article class="download-card"><h3>Other Android boxes</h3><p>For Android devices without the Play Store. Android 7.0 or newer is required.</p><a class="button button-quiet" href="apk/">Download the APK <span aria-hidden="true">↓</span></a><p class="small-note" style="margin-top:16px">The download version has all the free features. Premium is unlocked from your phone: <a href="#fire-premium" style="color:var(--mint)">see how</a>.</p></article>
         </div>
+      </div>
+    </section>
+
+    <section class="section" id="fire-premium">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">Premium on Fire TV</div><h2>Buy once. Unlock up to 5 devices.</h2><p>Fire TV and other boxes don't have Google Play, so Premium is bought in PortorTV on your Android phone or tablet, then unlocked on the TV with a short code. No account, no emails.</p></div>
+        <p class="small-note" id="unlock-soon" style="text-align:center;margin:-8px auto 24px;max-width:640px;color:var(--mint)"><strong>Coming very soon:</strong> unlocking needs the next PortorTV update on Google Play, which is with Google for review now. Until then, the download version works with all the free features.</p>
+        <div class="steps3">
+          <article class="download-card"><h3><span class="step-num" style="display:inline-grid;margin-right:8px">1</span>Show the code</h3><p>Install PortorTV on the Fire TV or box (see <a href="#download" style="color:var(--mint)">Download</a>). Open <strong>Settings › General › PortorTV Premium</strong>. A 6-character code appears, like <span class="code-link" style="margin:0;padding:3px 8px">K7P-42Q</span></p></article>
+          <article class="download-card"><h3><span class="step-num" style="display:inline-grid;margin-right:8px">2</span>Enter it on your phone</h3><p>On your Android phone or tablet, open <a href="https://play.google.com/store/apps/details?id=com.portortv.app" style="color:var(--mint)">PortorTV from Google Play</a> and buy Premium (already have it? No need to pay again). Go to <strong>Settings › General › Unlock another device</strong> and type the code.</p></article>
+          <article class="download-card primary"><h3><span class="step-num" style="display:inline-grid;margin-right:8px">3</span>Done</h3><p>The TV unlocks by itself within a few seconds. Your phone lists every unlocked device, and you can remove one to make room for a new box.</p></article>
+        </div>
+        <p class="small-note" style="text-align:center;margin-top:20px">Payment is handled by Google Play, so refunds and subscriptions are managed in your Google Play account. Devices check in once a day when online; if a yearly plan ends, they go back to the free version.</p>
       </div>
     </section>
 
@@ -447,6 +462,7 @@
           <details><summary>Does PortorTV come with channels?</summary><p>No. PortorTV is a player only. Add a playlist from your own TV provider: an M3U link, an Xtream Codes login or a Stalker portal.</p></details>
           <details><summary>Is it free?</summary><p>Yes, the free version plays one playlist with the full TV guide. Premium adds the sports hub, multiview, more playlists, movies and series, recording and more.</p></details>
           <details><summary>Which devices does it work on?</summary><p>Android TV and Google TV boxes and TVs, Fire TV devices running Fire OS, and Android phones and tablets (Android 7.0 or newer).</p></details>
+          <details><summary>Can I use Premium on a Fire TV Stick?</summary><p>Yes. Buy Premium in PortorTV on an Android phone or tablet, then enter the code from your Fire TV in <em>Unlock another device</em>. One purchase covers up to 5 devices. <a href="#fire-premium">Step-by-step guide</a>.</p></details>
           <details><summary>Where can I get help or suggest a feature?</summary><p>In the app go to Settings › Help &amp; guide, join us on <a href="https://reddit.com/r/PortorTV/">r/PortorTV</a>, or email <a href="mailto:PortorDevs@gmail.com">PortorDevs@gmail.com</a>.</p></details>
         </div>
       </div>
