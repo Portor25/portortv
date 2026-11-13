@@ -436,8 +436,8 @@
         <div class="section-head"><div class="eyebrow">Get started</div><h2>Download PortorTV.</h2><p>Pick your device. If it has the Google Play Store, use that: you get automatic updates and Premium.</p></div>
         <div class="download-grid">
           <article class="download-card primary"><h3>Android TV, Google TV, phones &amp; tablets</h3><p>Search for <strong>PortorTV</strong> in the Play Store, or use the button below.</p><a class="button button-primary" href="https://play.google.com/store/apps/details?id=com.portortv.app">Get it on Google Play <span aria-hidden="true">↗</span></a></article>
-          <article class="download-card"><h3>Amazon Fire TV</h3><ol class="steps"><li><span class="step-num">1</span><span>Install Downloader from the Amazon Appstore.</span></li><li><span class="step-num">2</span><span>Allow Downloader in Settings › My Fire TV › Developer options › Install unknown apps. If Developer options are hidden, highlight your device name under About and press OK seven times.</span></li><li><span class="step-num">3</span><span>Open Downloader, type this code and press Go:</span></li></ol><div class="code-link">6948510</div><p class="small-note">Or type the address <strong>portordevs.com/portortv/apk</strong> instead.</p><p class="small-note">Newer Fire TV devices running Vega OS (such as Fire TV Stick 4K Select) can’t install Android apps.</p></article>
-          <article class="download-card"><h3>Other Android boxes</h3><p>For Android devices without the Play Store. Android 7.0 or newer is required.</p><a class="button button-quiet" href="apk/">Download the APK <span aria-hidden="true">↓</span></a><p class="small-note" style="margin-top:16px">The download version has all the free features. Premium is unlocked from your phone: <a href="#fire-premium" style="color:var(--mint)">see how</a>.</p></article>
+          <article class="download-card"><h3>Amazon Fire TV</h3><ol class="steps"><li><span class="step-num">1</span><span>Install Downloader from the Amazon Appstore.</span></li><li><span class="step-num">2</span><span>Allow Downloader in Settings › My Fire TV › Developer options › Install unknown apps. If Developer options are hidden, highlight your device name under About and press OK seven times.</span></li><li><span class="step-num">3</span><span>Open Downloader, type this code and press Go:</span></li></ol><div class="code-link">6948510</div><p class="small-note">Or type the address <strong>portordevs.com/portortv/apk</strong> instead.</p><p class="small-note">Newer Fire TV devices running Vega OS (such as Fire TV Stick 4K Select) can’t install Android apps.</p><p style="margin:16px 0 0;padding:12px 14px;border:1px solid var(--gold);border-radius:14px;background:rgba(255,212,119,.08);color:var(--gold);font-size:.92rem;line-height:1.5"><strong>Right now:</strong> the download version has all the free features. Unlocking Premium on it starts with the next Google Play update, which is with Google for review now.</p></article>
+          <article class="download-card"><h3>Other Android boxes</h3><p>For Android devices without the Play Store. Android 7.0 or newer is required.</p><a class="button button-quiet" href="apk/">Download the APK <span aria-hidden="true">↓</span></a><p class="small-note" style="margin-top:16px">The download version has all the free features. Premium is unlocked from your phone: <a href="#fire-premium" style="color:var(--mint)">see how</a>.</p><p style="margin:16px 0 0;padding:12px 14px;border:1px solid var(--gold);border-radius:14px;background:rgba(255,212,119,.08);color:var(--gold);font-size:.92rem;line-height:1.5"><strong>Right now:</strong> the download version has all the free features. Unlocking Premium on it starts with the next Google Play update, which is with Google for review now.</p></article>
         </div>
       </div>
     </section>
@@ -445,11 +445,63 @@
     <section class="section" id="fire-premium">
       <div class="wrap">
         <div class="section-head"><div class="eyebrow">Premium on Fire TV</div><h2>Buy once. Unlock up to 5 devices.</h2><p>Fire TV and other boxes don't have Google Play, so Premium is bought in PortorTV on your Android phone or tablet, then unlocked on the TV with a short code. No account, no emails.</p></div>
-        <p class="small-note" id="unlock-soon" style="text-align:center;margin:-8px auto 24px;max-width:640px;color:var(--mint)"><strong>Coming very soon:</strong> unlocking needs the next PortorTV update on Google Play, which is with Google for review now. Until then, the download version works with all the free features.</p>
-        <div class="steps3">
-          <article class="download-card"><h3><span class="step-num" style="display:inline-grid;margin-right:8px">1</span>Show the code</h3><p>Install PortorTV on the Fire TV or box (see <a href="#download" style="color:var(--mint)">Download</a>). Open <strong>Settings › General › PortorTV Premium</strong>. A 6-character code appears, like <span class="code-link" style="margin:0;padding:3px 8px">K7P-42Q</span></p></article>
-          <article class="download-card"><h3><span class="step-num" style="display:inline-grid;margin-right:8px">2</span>Enter it on your phone</h3><p>On your Android phone or tablet, open <a href="https://play.google.com/store/apps/details?id=com.portortv.app" style="color:var(--mint)">PortorTV from Google Play</a> and buy Premium (already have it? No need to pay again). Go to <strong>Settings › General › Unlock another device</strong> and type the code.</p></article>
-          <article class="download-card primary"><h3><span class="step-num" style="display:inline-grid;margin-right:8px">3</span>Done</h3><p>The TV unlocks by itself within a few seconds. Your phone lists every unlocked device, and you can remove one to make room for a new box.</p></article>
+        <p id="unlock-soon" style="text-align:center;margin:-6px auto 34px;max-width:680px;padding:12px 16px;border:1px solid var(--gold);border-radius:14px;background:rgba(255,212,119,.08);color:var(--gold);font-size:.95rem;line-height:1.5"><strong>Coming very soon:</strong> unlocking needs the next PortorTV update on Google Play, which is with Google for review now. Until then, the download version works with all the free features.</p>
+        <style>
+          .uflow { display: grid; gap: 26px; }
+          .ustep { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 40px; align-items: center; padding: 34px; border: 1px solid var(--line); border-radius: 28px; background: linear-gradient(135deg, rgba(110,82,223,.16), rgba(13,17,31,.78) 55%); }
+          .ustep:nth-child(even) { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+          .ustep:nth-child(even) .utext { order: 2; }
+          .ubadge { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 14px; font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--mint); }
+          .ubadge b { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; font-size: 1.05rem; letter-spacing: 0; color: #fff; background: linear-gradient(135deg, var(--violet), var(--mint)); box-shadow: 0 8px 24px rgba(240,124,192,.35); }
+          .utext h3 { margin: 0 0 12px; font-size: clamp(1.45rem, 2.4vw, 1.9rem); line-height: 1.15; }
+          .utext p { margin: 0 0 10px; color: var(--muted); line-height: 1.6; }
+          .upath { display: inline-block; margin-top: 4px; padding: 7px 12px; border-radius: 10px; background: rgba(155,123,255,.14); color: var(--ink); font-weight: 700; font-size: .92rem; }
+          .utv { position: relative; border-radius: 18px; padding: 10px; background: #05070d; border: 1px solid rgba(220,226,255,.14); box-shadow: 0 30px 70px rgba(0,0,0,.55), 0 0 60px rgba(155,123,255,.18); }
+          .utv img { display: block; width: 100%; height: auto; border-radius: 10px; }
+          .utv::after { content: ""; position: absolute; left: 34%; right: 34%; bottom: -16px; height: 6px; border-radius: 6px; background: rgba(220,226,255,.12); }
+          .uphones { display: flex; justify-content: center; gap: 22px; }
+          .uphone { width: min(46%, 250px); border-radius: 30px; padding: 8px; background: #05070d; border: 1px solid rgba(220,226,255,.16); box-shadow: 0 30px 60px rgba(0,0,0,.55), 0 0 50px rgba(240,124,192,.14); }
+          .uphone img { display: block; width: 100%; height: auto; border-radius: 22px; }
+          .uphone figcaption { padding: 10px 4px 4px; text-align: center; font-size: .8rem; font-weight: 700; color: var(--muted); }
+          @media (max-width: 900px) {
+            .ustep, .ustep:nth-child(even) { grid-template-columns: 1fr; gap: 24px; padding: 22px; }
+            .ustep:nth-child(even) .utext { order: 0; }
+            .uphones { gap: 12px; }
+          }
+        </style>
+        <div class="uflow">
+          <article class="ustep">
+            <div class="utext">
+              <div class="ubadge"><b>1</b> On the TV</div>
+              <h3>Show the code</h3>
+              <p>Install PortorTV on the Fire TV or box (see <a href="#download" style="color:var(--mint)">Download</a>), then open:</p>
+              <span class="upath">Settings › General › PortorTV Premium</span>
+              <p style="margin-top:12px">A short code appears on the right. Leave this screen open.</p>
+            </div>
+            <figure class="utv" style="margin:0"><img src="img/tv-unlock-code.webp" width="1280" height="720" loading="lazy" alt="PortorTV on a TV showing the Premium screen with a 6-character unlock code"></figure>
+          </article>
+          <article class="ustep">
+            <div class="utext">
+              <div class="ubadge"><b>2</b> On your phone</div>
+              <h3>Type it in on your phone</h3>
+              <p>Open <a href="https://play.google.com/store/apps/details?id=com.portortv.app" style="color:var(--mint)">PortorTV from Google Play</a> on your Android phone or tablet and buy Premium (already have it? No need to pay again). Then go to:</p>
+              <span class="upath">Settings › General › Unlock another device</span>
+              <p style="margin-top:12px">Type the code from the TV and press <strong>Unlock</strong>.</p>
+            </div>
+            <div class="uphones">
+              <figure class="uphone" style="margin:0"><img src="img/phone-unlock-row.webp" width="620" height="946" loading="lazy" alt="PortorTV settings on a phone with Unlock another device highlighted"><figcaption>Tap Unlock another device</figcaption></figure>
+              <figure class="uphone" style="margin:0"><img src="img/phone-unlock-code.webp" width="620" height="946" loading="lazy" alt="The Unlock another device box on a phone with the code typed in"><figcaption>Type the code, press Unlock</figcaption></figure>
+            </div>
+          </article>
+          <article class="ustep">
+            <div class="utext">
+              <div class="ubadge"><b>3</b> Back on the TV</div>
+              <h3>Done, Premium is on</h3>
+              <p>The TV unlocks by itself within a few seconds and shows <strong>Premium · Active</strong>.</p>
+              <p>Your phone lists every unlocked device (up to 5), and you can remove one to make room for a new box.</p>
+            </div>
+            <figure class="utv" style="margin:0"><img src="img/tv-unlock-done.webp" width="1280" height="720" loading="lazy" alt="PortorTV on a TV showing PortorTV Premium Active"></figure>
+          </article>
         </div>
         <p class="small-note" style="text-align:center;margin-top:20px">Payment is handled by Google Play, so refunds and subscriptions are managed in your Google Play account. Devices check in once a day when online; if a yearly plan ends, they go back to the free version.</p>
       </div>
